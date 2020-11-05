@@ -85,7 +85,7 @@ public class ServerConsole implements ChatIF {
 	
 	public static void main(String[] args) 
 	  {
-	    String host = "";
+		/*String host = "";
 	    String stringport = "";
 	    int port;
 		try
@@ -99,6 +99,6 @@ public class ServerConsole implements ChatIF {
 	      port = DEFAULT_PORT;
 	    }
 	    ServerConsole chat= new ServerConsole(port);
-	    chat.accept();  //Wait for console data
+	    chat.accept();  //Wait for console data */
 	  }
 }

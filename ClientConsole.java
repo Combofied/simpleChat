@@ -170,10 +170,10 @@ public class ClientConsole implements ChatIF
 		loginID = args[2];
 	}
 	catch(ArrayIndexOutOfBoundsException e) {
-		//System.out.println("YOU MUST PROVIDE A LOGIN ID!");
-		//System.exit(0);
+		System.out.println("YOU MUST PROVIDE A LOGIN ID!");
+		System.exit(0);
 		//for testing purposes, if i forget to edit this out just uncomment the lines above
-		loginID = "anthony";
+		//loginID = "anthony";
 	}
     ClientConsole chat= new ClientConsole(host, port, loginID);
     chat.accept();  //Wait for console data

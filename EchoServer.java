@@ -171,7 +171,22 @@ public class EchoServer extends AbstractServer
    *          if no argument is entered.
    */
   public static void main(String[] args) {
+	  String host = "";
+	    String stringport = "";
+	    int port;
+		try
+	    {
+	      host = args[0];
+	      stringport = args[1];
+	      port = Integer.parseInt(stringport);
+	    }
+	    catch(ArrayIndexOutOfBoundsException e)
+	    {
+	      port = DEFAULT_PORT;
+	    }
+	    ServerConsole chat= new ServerConsole(port);
+	    chat.accept();  //Wait for console data
   }
-
+  
 }
 //End of EchoServer class
