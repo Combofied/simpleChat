@@ -5,6 +5,7 @@
 package client;
 
 import ocsf.client.*;
+
 import common.*;
 import java.io.*;
 
@@ -27,6 +28,8 @@ public class ChatClient extends AbstractClient
    */
   ChatIF clientUI; 
 
+  Boolean clientConnected;
+  String loginID;
   
   //Constructors ****************************************************
   
@@ -38,14 +41,37 @@ public class ChatClient extends AbstractClient
    * @param clientUI The interface type variable.
    */
   
-  public ChatClient(String host, int port, ChatIF clientUI) 
+  public ChatClient(String host, int port, ChatIF clientUI, String loginID) 
     throws IOException 
   {
     super(host, port); //Call the superclass constructor
+    this.loginID = loginID;
     this.clientUI = clientUI;
     openConnection();
+    
+  }
+  public String getloginID() {
+	  return loginID;
+  }
+  
+  public void connectionEstablished() {
+	  clientConnected = true;
+	  clientUI.display("connection has been established 1");
+  }
+  
+  public void connectionClosed() {
+	  clientConnected = false;
+	  clientUI.display("connection has been closed");
+  }
+  
+  public boolean connectionStatus() {
+	  return clientConnected;
   }
 
+  public void connectionException(Exception exception) {
+	  clientUI.display("error thrown in connection, closing");
+	  quit();
+	}
   
   //Instance methods ************************************************
     
@@ -56,7 +82,7 @@ public class ChatClient extends AbstractClient
    */
   public void handleMessageFromServer(Object msg) 
   {
-    clientUI.display(msg.toString());
+    clientUI.display("SERVER MSG> " + msg.toString());
   }
 
   /**
